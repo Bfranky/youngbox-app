@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Flame } from "lucide-react";
 
-type Item = { name: string; desc: string; price: string; tag?: string; emoji: string };
+type Item = { name: string; desc: string; price: string; tag?: string; emoji: string; image: string };
 type Category = { label: string; icon: string; items: Item[] };
 
 const categories: Record<string, Category> = {
@@ -16,6 +16,7 @@ const categories: Record<string, Category> = {
         price: "₦1,500",
         tag: "Best Seller",
         emoji: "🌯",
+        image: "https://images.unsplash.com/photo-1561651823-34fed0225408?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Beef Shawarma",
@@ -23,12 +24,14 @@ const categories: Record<string, Category> = {
         price: "₦2,000",
         tag: "Popular",
         emoji: "🥩",
+        image: "https://images.unsplash.com/photo-1642683215881-8b43ad841285?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Mixed Shawarma",
         desc: "Half chicken, half beef — the best of both worlds in one epic wrap",
         price: "₦2,300",
         emoji: "🌯",
+        image: "https://images.unsplash.com/photo-1662116765994-4e207908b981?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Large Chicken Shawarma",
@@ -36,12 +39,14 @@ const categories: Record<string, Category> = {
         price: "₦2,200",
         tag: "Extra Large",
         emoji: "🌯",
+        image: "https://images.unsplash.com/photo-1637806930600-37fa811485a5?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Large Beef Shawarma",
         desc: "Loaded beef wrap with extra toppings and our signature hot sauce",
         price: "₦2,800",
         emoji: "🥩",
+        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Suya Shawarma",
@@ -49,6 +54,7 @@ const categories: Record<string, Category> = {
         price: "₦2,500",
         tag: "🔥 Signature",
         emoji: "🔥",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80",
       },
     ],
   },
@@ -61,6 +67,7 @@ const categories: Record<string, Category> = {
         desc: "Golden fried potatoes, seasoned to perfection",
         price: "₦700",
         emoji: "🍟",
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Spicy Fries",
@@ -68,18 +75,21 @@ const categories: Record<string, Category> = {
         price: "₦800",
         tag: "🌶️ Hot",
         emoji: "🍟",
+        image: "https://images.unsplash.com/photo-1585109649139-366815a0d713?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Coleslaw",
         desc: "Fresh creamy coleslaw, perfectly balanced",
         price: "₦500",
         emoji: "🥗",
+        image: "https://images.unsplash.com/photo-1625938146369-adc83368bda7?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Grilled Plantain",
         desc: "Sweet ripe plantain, grilled to caramelized perfection",
         price: "₦600",
         emoji: "🍌",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Peppered Chicken Wings",
@@ -87,12 +97,14 @@ const categories: Record<string, Category> = {
         price: "₦1,800",
         tag: "Fan Fave",
         emoji: "🍗",
+        image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Egg Roll",
         desc: "Nigerian-style egg roll, crispy and golden outside, soft inside",
         price: "₦400",
         emoji: "🥚",
+        image: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=600&auto=format&fit=crop&q=80",
       },
     ],
   },
@@ -105,12 +117,14 @@ const categories: Record<string, Category> = {
         desc: "Coke, Fanta, Sprite, Malta — ice cold always",
         price: "₦300",
         emoji: "🥤",
+        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Bottled Water",
         desc: "Ice-cold pure water",
         price: "₦150",
         emoji: "💧",
+        image: "https://images.unsplash.com/photo-1608885898957-a599fb18ec3f?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Fresh Juice",
@@ -118,12 +132,14 @@ const categories: Record<string, Category> = {
         price: "₦500",
         tag: "Fresh",
         emoji: "🍹",
+        image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Energy Drink",
         desc: "Bullet, Fearless, or Power Horse — fuel your night",
         price: "₦600",
         emoji: "⚡",
+        image: "https://images.unsplash.com/photo-1622543956221-a396e9b05d0f?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Chapman",
@@ -131,12 +147,14 @@ const categories: Record<string, Category> = {
         price: "₦700",
         tag: "Popular",
         emoji: "🍊",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&auto=format&fit=crop&q=80",
       },
       {
         name: "Smoothy",
         desc: "Blended seasonal fruits — thick, fresh, delicious",
         price: "₦800",
         emoji: "🥤",
+        image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&auto=format&fit=crop&q=80",
       },
     ],
   },
@@ -148,12 +166,18 @@ export default function MenuSection() {
 
   useEffect(() => {
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+          }
+        });
+      },
       { threshold: 0.06 }
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
-  }, []);
+  }, [active]);
 
   const current = categories[active];
 
@@ -210,58 +234,56 @@ export default function MenuSection() {
         </div>
 
         {/* Item cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {current.items.map(({ name, desc, price, tag, emoji }, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {current.items.map(({ name, desc, price, tag, emoji, image }, i) => (
             <div
               key={name}
-              className="reveal menu-card relative rounded-xl overflow-hidden"
+              className="reveal menu-card relative rounded-xl overflow-hidden flex flex-col justify-between"
               style={{
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.07)",
-                transitionDelay: `${0.08 * i}s`,
+                transitionDelay: `${0.05 * i}s`,
               }}
             >
-              {/* Warm-toned gradient top bar */}
-              <div
-                className="h-1"
-                style={{
-                  background: i % 3 === 0
-                    ? "linear-gradient(90deg, var(--red), var(--orange))"
-                    : i % 3 === 1
-                    ? "linear-gradient(90deg, var(--orange), var(--amber))"
-                    : "linear-gradient(90deg, var(--amber), var(--red))",
-                }}
-              />
-              <div className="p-5">
-                {/* Tag */}
+              {/* Image header */}
+              <div className="relative h-48 w-full bg-neutral-900 overflow-hidden">
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
                 {tag && (
                   <span
-                    className="inline-block mb-3 text-[9px] tracking-[0.25em] uppercase font-bold px-2.5 py-1 rounded-full"
+                    className="absolute top-3 left-3 text-[9px] tracking-[0.25em] uppercase font-bold px-2.5 py-1 rounded-full shadow-lg"
                     style={{
-                      background: tag.includes("🔥") ? "rgba(217,43,43,0.2)" : "rgba(242,100,25,0.15)",
-                      color: tag.includes("🔥") ? "var(--red)" : "var(--orange)",
-                      border: `1px solid ${tag.includes("🔥") ? "rgba(217,43,43,0.3)" : "rgba(242,100,25,0.25)"}`,
+                      background: tag.includes("🔥") ? "var(--red)" : "var(--orange)",
+                      color: "#fff",
                     }}
                   >
                     {tag}
                   </span>
                 )}
+              </div>
 
-                <div className="flex items-start gap-3 mb-3">
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{emoji}</span>
-                  <h3
-                    className="oswald font-semibold text-lg leading-snug tracking-wide"
-                    style={{ color: "var(--warm-white)" }}
-                  >
-                    {name}
-                  </h3>
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-start gap-3 mb-2">
+                    <span className="text-2xl flex-shrink-0 mt-0.5">{emoji}</span>
+                    <h3
+                      className="oswald font-semibold text-lg leading-snug tracking-wide"
+                      style={{ color: "var(--warm-white)" }}
+                    >
+                      {name}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--muted)", fontSize: "0.82rem" }}>
+                    {desc}
+                  </p>
                 </div>
 
-                <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--muted)", fontSize: "0.82rem" }}>
-                  {desc}
-                </p>
-
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-auto pt-2">
                   <span
                     className="bebas text-2xl tracking-wider"
                     style={{ color: "var(--orange)" }}
@@ -288,7 +310,7 @@ export default function MenuSection() {
         </div>
 
         {/* View full menu CTA */}
-        <div className="reveal text-center mt-12" style={{ transitionDelay: "0.5s" }}>
+        <div className="reveal text-center mt-12" style={{ transitionDelay: "0.2s" }}>
           <a
             href="https://wa.me/2348143990167?text=Hi!%20Can%20I%20see%20the%20full%20menu%20please%3F"
             target="_blank"
