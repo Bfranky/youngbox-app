@@ -5,6 +5,17 @@ import { Flame } from "lucide-react";
 type Item = { name: string; desc: string; price: string; tag?: string; emoji: string; image: string };
 type Category = { label: string; icon: string; items: Item[] };
 
+// Your 4 local images from the /public folder.
+// Files are served from the root in Next.js: /public/image1.jpg → /image1.jpg
+// If you kept the original filenames (with spaces), use the encoded versions below.
+// RECOMMENDED: rename them in /public to image1.jpg, image2.jpg, image3.jpg, image4.jpg
+const LOCAL_IMAGES = {
+  img1: "/image%201%20(1).jpg", // → rename to /image1.jpg and use "/image1.jpg"
+  img2: "/image%202.jpg",       // → rename to /image2.jpg and use "/image2.jpg"
+  img3: "/image%203.jpg",       // → rename to /image3.jpg and use "/image3.jpg"
+  img4: "/image 4.jpg",       // → rename to /image4.jpg and use "/image4.jpg"
+};
+
 const categories: Record<string, Category> = {
   shawarma: {
     label: "Shawarma",
@@ -16,7 +27,7 @@ const categories: Record<string, Category> = {
         price: "₦1,500",
         tag: "Best Seller",
         emoji: "🌯",
-        image: "https://images.unsplash.com/photo-1561651823-34fed0225408?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img1,
       },
       {
         name: "Beef Shawarma",
@@ -24,14 +35,14 @@ const categories: Record<string, Category> = {
         price: "₦2,000",
         tag: "Popular",
         emoji: "🥩",
-        image: "https://images.unsplash.com/photo-1642683215881-8b43ad841285?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img2,
       },
       {
         name: "Mixed Shawarma",
         desc: "Half chicken, half beef — the best of both worlds in one epic wrap",
         price: "₦2,300",
         emoji: "🌯",
-        image: "https://images.unsplash.com/photo-1662116765994-4e207908b981?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img3,
       },
       {
         name: "Large Chicken Shawarma",
@@ -39,14 +50,14 @@ const categories: Record<string, Category> = {
         price: "₦2,200",
         tag: "Extra Large",
         emoji: "🌯",
-        image: "https://images.unsplash.com/photo-1637806930600-37fa811485a5?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img4,
       },
       {
         name: "Large Beef Shawarma",
         desc: "Loaded beef wrap with extra toppings and our signature hot sauce",
         price: "₦2,800",
         emoji: "🥩",
-        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img1, // cycles back to img1
       },
       {
         name: "Suya Shawarma",
@@ -54,7 +65,7 @@ const categories: Record<string, Category> = {
         price: "₦2,500",
         tag: "🔥 Signature",
         emoji: "🔥",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80",
+        image: LOCAL_IMAGES.img2, // cycles back to img2
       },
     ],
   },
